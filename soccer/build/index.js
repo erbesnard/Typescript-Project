@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const MatchReader_1 = require("./classes/MatchReader");
+const Summary_1 = require("./classes/Summary");
+const ConsoleReport_1 = require("./classes/outputTargets/ConsoleReport");
+const WinAnalysis_1 = require("./classes/analyzers/WinAnalysis");
+const matchReader = MatchReader_1.MatchReader.fromCsv("football.csv");
+matchReader.load();
+const summary = new Summary_1.Summary(new WinAnalysis_1.WinAnalysis("Man United"), new ConsoleReport_1.ConsoleReport());
+summary.buildAndPrintReport(matchReader.matches);
+const summaryHtml = Summary_1.Summary.winsAnalysisWithHtmlReport("Man United");
+summaryHtml.buildAndPrintReport(matchReader.matches);
